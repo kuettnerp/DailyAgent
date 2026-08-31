@@ -9,7 +9,7 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>com.dailyagent.wakedaemon</string>
+  <string>com.patriot.wakedaemon</string>
 
   <key>ProgramArguments</key>
   <array>
@@ -19,10 +19,10 @@
 
   <key>EnvironmentVariables</key>
   <dict>
-    <key>DAILY_ASSISTANT_REPO_PATH</key>
+    <key>PATRIOT_REPO_PATH</key>
     <string>__REPO_PATH__</string>
     <key>WAKE_MODEL_NAME</key>
-    <string>hey jarvis</string>
+    <string>patriot</string>
   </dict>
 
   <key>WorkingDirectory</key>
@@ -38,8 +38,8 @@
   </dict>
 
   <key>StandardOutPath</key>
-  <string>__HOME__/Library/Logs/dailyagent-wake.log</string>
+  <string>__HOME__/Library/Logs/patriot-wake.log</string>
   <key>StandardErrorPath</key>
-  <string>__HOME__/Library/Logs/dailyagent-wake.log</string>
+  <string>__HOME__/Library/Logs/patriot-wake.log</string>
 </dict>
 </plist>

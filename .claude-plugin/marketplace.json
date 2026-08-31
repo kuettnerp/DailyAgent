@@ -5,9 +5,9 @@
   },
   "plugins": [
     {
-      "name": "daily-assistant",
+      "name": "patriot",
       "source": ".",
-      "description": "Conversational daily planning assistant: cross-day memory, learned time estimates, opt-in skill learning, web research, and calendar/reminders nudges."
+      "description": "Patriot: conversational daily planning assistant with cross-day memory, learned time estimates, opt-in skill learning, web research, calendar/reminders nudges, and a voice wake word."
     }
   ]
 }

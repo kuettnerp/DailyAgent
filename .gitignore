@@ -1,6 +1,6 @@
-# Runtime memory data is written to ~/.daily-assistant/ (outside this repo),
+# Runtime memory data is written to ~/.patriot/ (outside this repo),
 # but guard against it ever being created in-tree during local testing.
-/.daily-assistant/
+/.patriot/
 data/
 
 __pycache__/
@@ -12,3 +12,10 @@ __pycache__/
 voice/.venv/
 voice/launchd/*.plist
 !voice/launchd/*.plist.template
+
+# wake-word training scratch space: venv + generated audio clips are not
+# committed, only the final trained model under voice/models/ is
+voice/training/.venv/
+voice/training/audio/
+voice/training/*.npy
+voice/training/*.npz

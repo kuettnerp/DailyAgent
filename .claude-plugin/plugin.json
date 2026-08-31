@@ -1,7 +1,7 @@
 {
-  "name": "daily-assistant",
+  "name": "patriot",
   "version": "0.1.0",
-  "description": "A conversational personal assistant for daily planning: remembers what carried over from previous days, learns how long your tasks actually take and uses that to estimate and prioritize, learns new skills on request, does web research with sourced findings, and nudges you to keep your calendar and reminders in sync (without ever touching them automatically).",
+  "description": "Patriot: a conversational personal assistant for daily planning. Remembers what carried over from previous days, learns how long your tasks actually take and uses that to estimate and prioritize, learns new skills on request, does web research with sourced findings, and nudges you to keep your calendar and reminders in sync (without ever touching them automatically). Wakeable by voice with its own trained wake word, \"Patriot\" (see voice/).",
   "author": {
     "name": "kuettnerp"
   },

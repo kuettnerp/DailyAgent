@@ -1,10 +1,11 @@
-# DailyAgent — daily-assistant plugin
+# Patriot
 
-A Claude Code plugin that acts as a personal daily-planning assistant: you
-talk to it, it remembers things across days, learns how long your tasks
-actually take, learns new routines when you explicitly ask it to, does web
-research, and nudges you to keep your real calendar/reminders in sync
-(without ever touching them itself).
+The `patriot` Claude Code plugin (in the DailyAgent repo) is a personal
+daily-planning assistant: you talk to it, it remembers things across days,
+learns how long your tasks actually take, learns new routines when you
+explicitly ask it to, does web research, and nudges you to keep your real
+calendar/reminders in sync (without ever touching them itself). It also has
+its own spoken wake word, **"Patriot"** — see [Voice wake word](#voice-wake-word--status) below.
 
 ## What it does
 
@@ -23,7 +24,7 @@ check-in without you having to remember to ask.
 ## Memory & privacy
 
 All state is stored **locally, outside this git repo**, under
-`~/.daily-assistant/` (override with the `DAILY_ASSISTANT_HOME` env var):
+`~/.patriot/` (override with the `PATRIOT_HOME` env var):
 
 - `days/YYYY-MM-DD.json` — each day's tasks, estimates, actuals, priorities, calendar-confirmation flags
 - `task_history.json` — estimate vs. actual history per task, used to auto-suggest future estimates
@@ -37,11 +38,13 @@ you can open, edit, or delete by hand at any time.
 
 **Built, not yet smoke-tested against real hardware** (this repo was built
 in a sandboxed environment with no microphone). A local, macOS-only daemon
-listens for a spoken wake word ("hey jarvis" by default), records what you
-say next, transcribes it locally, and opens a new `claude` session with
-that as the prompt — all offline, no accounts, no API keys. See
-[`voice/README.md`](voice/README.md) to set it up and tune it on your own
-machine.
+listens for the spoken wake word **"Patriot"** — a custom openWakeWord
+model trained specifically for this plugin, see
+[`voice/training/README.md`](voice/training/README.md) for how — records
+what you say next, transcribes it locally, and opens a new `claude`
+session with that as the prompt. All offline, no accounts, no API keys.
+See [`voice/README.md`](voice/README.md) to set it up and tune it on your
+own machine.
 
 ## Calendar & Reminders — status
 
@@ -66,7 +69,7 @@ claude --plugin-dir /path/to/DailyAgent
 
 ```
 /plugin marketplace add /path/to/DailyAgent
-/plugin install daily-assistant@dailyagent
+/plugin install patriot@dailyagent
 ```
 
 Both skills and hooks are picked up without a full restart — run

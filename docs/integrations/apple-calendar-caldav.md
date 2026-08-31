@@ -27,7 +27,7 @@ client:
 
 1. Sign in at https://appleid.apple.com
 2. Sign-In and Security → App-Specific Passwords → generate one, label it
-   something like "daily-assistant caldav"
+   something like "patriot caldav"
 3. It's scoped (can't touch Keychain, purchases, or reset the Apple ID) and
    revocable independently of the main password at any time.
 

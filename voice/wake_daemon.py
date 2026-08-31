@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""Local voice wake-word daemon for the daily-assistant plugin.
+"""Local voice wake-word daemon for Patriot, the daily-assistant plugin.
 
 Runs entirely on your own machine (needs a microphone) -- this is NOT part
 of the Claude Code plugin itself and is never invoked automatically by any
 skill or hook. See voice/README.md before running this.
 
-Flow: listen for a wake word (openWakeWord) -> once heard, record until you
-stop talking -> transcribe locally (faster-whisper, no cloud API, no
-account) -> open a new interactive `claude` session with what you said as
-the opening prompt.
+Flow: listen for the wake word "Patriot" (a custom-trained openWakeWord
+model, see voice/training/) -> once heard, record until you stop talking
+-> transcribe locally (faster-whisper, no cloud API, no account) -> open a
+new interactive `claude` session with what you said as the opening prompt.
 
 Everything here is local/offline except the one-time model downloads
-(openWakeWord's own pretrained models, faster-whisper's model weights from
-Hugging Face) -- no ongoing account or API key is used.
+(openWakeWord's shared feature-extraction models, faster-whisper's model
+weights from Hugging Face) -- no ongoing account or API key is used.
 """
 from __future__ import annotations
 
@@ -26,11 +26,13 @@ import sys
 import tempfile
 import time
 import wave
+from pathlib import Path
 
 import numpy as np
 
 SAMPLE_RATE = 16000
 FRAME_SAMPLES = 1280  # 80ms at 16kHz, the chunk size openWakeWord expects
+DEFAULT_MODEL_PATH = Path(__file__).resolve().parent / "models" / "patriot.onnx"
 
 
 def env_float(name, default):
@@ -41,7 +43,8 @@ def env_str(name, default):
     return os.environ.get(name, default)
 
 
-WAKE_MODEL_NAME = env_str("WAKE_MODEL_NAME", "hey jarvis")
+WAKE_MODEL_NAME = env_str("WAKE_MODEL_NAME", "patriot")
+WAKE_CUSTOM_MODEL_PATH = env_str("WAKE_CUSTOM_MODEL_PATH", str(DEFAULT_MODEL_PATH))
 WAKE_THRESHOLD = env_float("WAKE_THRESHOLD", 0.5)
 SILENCE_SECONDS = env_float("WAKE_SILENCE_SECONDS", 1.2)
 MIN_RECORD_SECONDS = env_float("WAKE_MIN_RECORD_SECONDS", 0.6)
@@ -52,7 +55,7 @@ WHISPER_MODEL_SIZE = env_str("WHISPER_MODEL_SIZE", "base")
 WHISPER_DEVICE = env_str("WHISPER_DEVICE", "cpu")
 WHISPER_COMPUTE_TYPE = env_str("WHISPER_COMPUTE_TYPE", "int8")
 CLAUDE_BIN = env_str("CLAUDE_BIN", "claude")
-DAILY_ASSISTANT_REPO_PATH = os.environ.get("DAILY_ASSISTANT_REPO_PATH")
+PATRIOT_REPO_PATH = os.environ.get("PATRIOT_REPO_PATH")
 FALLBACK_PROMPT = env_str("WAKE_FALLBACK_PROMPT", "Let's do the daily check-in.")
 
 
@@ -74,6 +77,13 @@ def build_wake_model():
         print(f"[wake] model download check failed (continuing, may already be cached): {e}",
               file=sys.stderr)
 
+    if WAKE_CUSTOM_MODEL_PATH and os.path.exists(WAKE_CUSTOM_MODEL_PATH):
+        return Model(wakeword_models=[WAKE_CUSTOM_MODEL_PATH], inference_framework="onnx")
+
+    print(f"[wake] custom model not found at {WAKE_CUSTOM_MODEL_PATH!r} -- "
+          "falling back to openWakeWord's bundled pretrained models "
+          "(set WAKE_MODEL_NAME to alexa/hey mycroft/hey rhasspy in that case).",
+          file=sys.stderr)
     return Model()
 
 
@@ -110,8 +120,8 @@ def transcribe(path: str, whisper_model) -> str:
 
 def launch_claude(prompt: str) -> None:
     claude_cmd = [CLAUDE_BIN]
-    if DAILY_ASSISTANT_REPO_PATH:
-        claude_cmd += ["--plugin-dir", DAILY_ASSISTANT_REPO_PATH]
+    if PATRIOT_REPO_PATH:
+        claude_cmd += ["--plugin-dir", PATRIOT_REPO_PATH]
     claude_cmd += [prompt]
     shell_command = " ".join(shlex.quote(part) for part in claude_cmd)
 

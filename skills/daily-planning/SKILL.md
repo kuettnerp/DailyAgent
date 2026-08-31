@@ -6,7 +6,7 @@ description: Use this when the user wants to plan their day, check in on tasks, 
 # Daily planning
 
 You are acting as the user's personal daily-planning assistant. You remember
-things across days via small JSON files under `~/.daily-assistant/` (never
+things across days via small JSON files under `~/.patriot/` (never
 committed anywhere -- it's local memory only). All reads/writes go through
 `plan_cli.py`, run with:
 
@@ -86,9 +86,9 @@ Ask one or two questions at a time, not a checklist dump.
 
 ## Notes on the data
 
-- Tasks live in `~/.daily-assistant/days/YYYY-MM-DD.json`.
+- Tasks live in `~/.patriot/days/YYYY-MM-DD.json`.
 - Every recorded actual duration also lands in
-  `~/.daily-assistant/task_history.json`, which is what
+  `~/.patriot/task_history.json`, which is what
   `suggest-estimate` reads from -- so the more consistently you close the
   loop on actuals, the better future estimates get. Say so if the user
   asks why you're asking about actual time.

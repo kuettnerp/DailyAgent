@@ -51,7 +51,7 @@ def _write_skill_md(slug: str, title: str, triggers: list[str], steps: list[str]
     trigger_phrase_list = ", ".join(f'"{t}"' for t in triggers) if triggers else "(none given)"
     description = (
         f"Use this skill to {title.rstrip('.').lower()}. "
-        f"The user asked the daily-assistant to learn this. Triggers include: {trigger_phrase_list}. "
+        f"The user asked Patriot to learn this. Triggers include: {trigger_phrase_list}. "
         "Follow the steps below; if the user's request diverges from them, do the steps that still apply "
         "and ask before improvising anything destructive or externally visible."
     )
@@ -65,7 +65,7 @@ description: {description}
 # {title}
 
 This skill was learned from a conversation with the user on {lib.today_str()},
-via the daily-assistant plugin's skill-learning flow. It is plain text you
+via Patriot's skill-learning flow. It is plain text you
 (and the user) can edit freely -- nothing about it is magic.
 
 ## Steps

@@ -41,7 +41,7 @@ Repeat `--step` for each step -- be concrete enough that a future
 conversation with no memory of this one could follow them.
 
 This does two things: it saves a JSON entry in
-`~/.daily-assistant/learned_playbooks.json` (usable immediately, this
+`~/.patriot/learned_playbooks.json` (usable immediately, this
 session, by checking it -- see below), and it writes a real `SKILL.md`
 under `skills/learned/<slug>/` in this plugin. The generated skill becomes
 a fully independent, auto-triggering Claude Code skill the next time the

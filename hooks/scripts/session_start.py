@@ -41,7 +41,7 @@ def main():
         titles = ", ".join(t["title"] for t in unfinished[:5])
         more = f" (+{len(unfinished) - 5} more)" if len(unfinished) > 5 else ""
         context = (
-            "daily-assistant plugin memory: the user has "
+            "Patriot memory: the user has "
             f"{len(unfinished)} unfinished task(s) carried over from {prev}: "
             f"{titles}{more}. If it fits naturally, offer a daily check-in "
             "(the daily-planning skill) rather than assuming -- don't force it "

@@ -41,5 +41,5 @@ python3 "$CLAUDE_PLUGIN_ROOT/scripts/plan_cli.py" update-task --id <id> --notes 
 
 Only if the user asks to keep it (not by default -- don't clutter their
 disk), save the full findings as markdown to
-`~/.daily-assistant/research/<YYYY-MM-DD>-<short-slug>.md` and tell them
+`~/.patriot/research/<YYYY-MM-DD>-<short-slug>.md` and tell them
 the path.

@@ -1,10 +1,10 @@
-"""Shared storage helpers for the daily-assistant plugin.
+"""Shared storage helpers for Patriot, the daily-assistant plugin.
 
 All persistent state lives under a single directory (default
-``~/.daily-assistant``, overridable via the ``DAILY_ASSISTANT_HOME`` env var
-so it can be pointed at a scratch directory during tests). Nothing here ever
-touches the git repo the plugin code ships in -- this is per-user memory,
-not plugin source.
+``~/.patriot``, overridable via the ``PATRIOT_HOME`` env var so it can be
+pointed at a scratch directory during tests). Nothing here ever touches the
+git repo the plugin code ships in -- this is per-user memory, not plugin
+source.
 
 Layout under that directory:
 
@@ -26,8 +26,8 @@ from typing import Any
 
 
 def home_dir() -> Path:
-    override = os.environ.get("DAILY_ASSISTANT_HOME")
-    base = Path(override) if override else Path.home() / ".daily-assistant"
+    override = os.environ.get("PATRIOT_HOME")
+    base = Path(override) if override else Path.home() / ".patriot"
     (base / "days").mkdir(parents=True, exist_ok=True)
     return base
 
