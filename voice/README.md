@@ -139,10 +139,16 @@ to always-on background listening.
 - macOS only right now (uses `osascript`/Terminal.app to open the session).
   On another platform, the script will just print the command to run
   yourself instead of failing silently.
-- The wake-word model (`training/README.md` has full details) was trained
-  and validated only on synthetic TTS voices, never a real human ear or
-  microphone -- real-world accuracy (both missed wake-ups and false
-  triggers on unrelated speech) is unverified until you actually try it.
+- The wake-word model was trained and validated only on synthetic,
+  robotic-sounding TTS voices (espeak-ng, not a neural voice -- see
+  `training/README.md` for why), never a real human ear or microphone.
+  On held-out synthetic accents it scored 75% recall / 5.7% false-positive
+  rate, with the false positives concentrated in intentionally hard cases
+  (phonetically-similar words, mistimed utterances) rather than random
+  speech -- a reasonable signal, but not a real-world guarantee. Expect to
+  retune `WAKE_THRESHOLD` and likely add real recordings of your own
+  voice (`training/README.md` has a "recommended before relying on this
+  day to day" section for exactly that).
 - No wake-word-to-wake-word overlap handling beyond a fixed cooldown; if
   you say the wake word again immediately after a command, it should still
   work, just not mid-cooldown.

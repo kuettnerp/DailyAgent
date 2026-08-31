@@ -1,0 +1,12 @@
+# Only needed to (re)train voice/models/patriot.onnx -- not needed to run
+# the daemon day to day (see ../requirements.txt for that).
+openwakeword>=0.6.0
+onnx>=1.15
+onnxruntime>=1.17
+torch>=2.0
+scipy>=1.10
+numpy>=1.24
+
+# Text-to-speech for synthesizing training audio is espeak-ng, installed via
+# the OS package manager (`apt-get install espeak-ng` / `brew install espeak-ng`),
+# not pip -- see README.md.
