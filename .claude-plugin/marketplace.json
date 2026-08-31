@@ -1,0 +1,13 @@
+{
+  "name": "dailyagent",
+  "owner": {
+    "name": "kuettnerp"
+  },
+  "plugins": [
+    {
+      "name": "daily-assistant",
+      "source": ".",
+      "description": "Conversational daily planning assistant: cross-day memory, learned time estimates, opt-in skill learning, web research, and calendar/reminders nudges."
+    }
+  ]
+}

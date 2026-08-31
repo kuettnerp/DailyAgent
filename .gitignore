@@ -1,0 +1,9 @@
+# Runtime memory data is written to ~/.daily-assistant/ (outside this repo),
+# but guard against it ever being created in-tree during local testing.
+/.daily-assistant/
+data/
+
+__pycache__/
+*.pyc
+.env
+.DS_Store
