@@ -7,3 +7,8 @@ __pycache__/
 *.pyc
 .env
 .DS_Store
+
+# voice daemon local env / generated plist (the .template is committed, the real one is per-machine)
+voice/.venv/
+voice/launchd/*.plist
+!voice/launchd/*.plist.template

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Template only -- do not load this file as-is. Copy it, replace the
+  __PLACEHOLDER__ values below for your machine, then load it. See
+  voice/README.md for the exact steps.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.dailyagent.wakedaemon</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>__PYTHON_BIN__</string>
+    <string>__REPO_PATH__/voice/wake_daemon.py</string>
+  </array>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>DAILY_ASSISTANT_REPO_PATH</key>
+    <string>__REPO_PATH__</string>
+    <key>WAKE_MODEL_NAME</key>
+    <string>hey jarvis</string>
+  </dict>
+
+  <key>WorkingDirectory</key>
+  <string>__REPO_PATH__/voice</string>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <dict>
+    <key>SuccessfulExit</key>
+    <false/>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>__HOME__/Library/Logs/dailyagent-wake.log</string>
+  <key>StandardErrorPath</key>
+  <string>__HOME__/Library/Logs/dailyagent-wake.log</string>
+</dict>
+</plist>

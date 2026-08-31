@@ -33,6 +33,16 @@ All state is stored **locally, outside this git repo**, under
 Nothing here is committed, pushed, or synced by this repo. It's plain JSON
 you can open, edit, or delete by hand at any time.
 
+## Voice wake word — status
+
+**Built, not yet smoke-tested against real hardware** (this repo was built
+in a sandboxed environment with no microphone). A local, macOS-only daemon
+listens for a spoken wake word ("hey jarvis" by default), records what you
+say next, transcribes it locally, and opens a new `claude` session with
+that as the prompt — all offline, no accounts, no API keys. See
+[`voice/README.md`](voice/README.md) to set it up and tune it on your own
+machine.
+
 ## Calendar & Reminders — status
 
 **Not automated, by design (for now).** The assistant will always just
@@ -75,6 +85,7 @@ skills/                one directory per skill, each with a SKILL.md
 scripts/               shared Python CLIs the skills shell out to (lib.py, plan_cli.py, timer_cli.py, playbook_cli.py)
 hooks/                 SessionStart hook (surfaces carried-over tasks)
 docs/integrations/     calendar/reminders investigation, intentionally unwired
+voice/                 local voice wake-word daemon (macOS, not part of the plugin proper)
 ```
 
 ## Trying the CLIs directly
